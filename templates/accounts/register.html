@@ -1,0 +1,33 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Register for a Hex account{% endblock title %}
+
+{% block body %}
+<h4>Use the form below to register for a Hex account</h4>
+<form action="{% url 'accounts:register' %}" method="post" id="">
+    {% csrf_token %}
+    
+    <fieldset>
+        <label for="">First Name</label>
+        <input type="text" name="first_name" required="required">
+
+        <label for="">Last Name</label>
+        <input type="text" name="last_name" required="required">
+
+        <label for="">Email Address</label>
+        <input type="email" name="email" required="required">
+
+        <label for="">Username</label>
+        <input type="text" name="username" required="required">
+
+        <label for="">Password</label>
+        <input type="password" name="password1" id="password1" required="required">
+
+        <label for="">Confirm Password</label>
+        <input type="password" name="password2" id="password2" required="required">
+
+        <input type="submit" value="Register" id="submit">
+    </fieldset>
+</form>
+<h4>Already have an account? Login <a href="{% url 'accounts:login' %}">here</a>.</h4>
+
+{% endblock body %}

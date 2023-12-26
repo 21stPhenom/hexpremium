@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{post.title}} | Hexpremium{% endblock title %}
+
+{% block body %}
+{% if post %}
+    <h3>{{post.title}}</h3>
+    <ul>
+        <li>By: {{post.owner_profile.user.username}}</li>
+        <li>Last updated: {{post.date_updated}}</li>
+        <li>{{post.get_tag_display}}</li>
+        {% if post.owner_profile == profile %}
+            <li><a href="{% url 'blog:update-post' post.slug_title%}">Update Post</a></li>
+        {% endif %}
+    </ul>
+
+    <p>{{post.content}}</p>
+{% endif %}
+
+{% endblock body %}

@@ -1,0 +1,17 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Blog | Hex{% endblock title %}
+
+{% block body %}
+
+<h3>Hexpremium Blog</h3>
+<h4>Quick Links</h4>
+<ul>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'blog:view-posts' %}">All Posts</a></li>
+    <li><a href="{% url 'blog:add-post' %}">Create Post</a></li>
+        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+    {% endif %}
+</ul>
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Upgrade your plan | Hexpremium{% endblock title %}
+
+{% block body %}
+<h3>Current plan: {{ profile.plan }}</h3>
+
+<h3>Upgrade to any of the following:</h3>
+<ul>
+    <li>
+        <form action="{% url 'accounts:upgrade_plan' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="new_plan" value="bc">
+            <input type="submit" value="Basic">
+        </form>
+    </li>
+    <li>
+        <form action="{% url 'accounts:upgrade_plan' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="new_plan" value="pr">
+            <input type="submit" value="Pro">
+        </form>
+    </li>
+    <li>
+        <form action="{% url 'accounts:upgrade_plan' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="new_plan" value="pm">
+            <input type="submit" value="Premium">
+        </form>
+    </li>
+</ul>
+
+{% endblock body %}

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block title %}All posts | Hexpremium{% endblock title %}
+
+{% block body %}
+
+{% if posts %}
+    <h3>Here are all the post for {{profile.get_plan_display}}</h3> 
+    <ul>
+        {% for post in posts %}
+        <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+        <li>Plan: {{post.get_tag_display}}</li>
+        <br>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>No posts to show.</h3>
+{% endif %}
+{% endblock body %}
