@@ -65,7 +65,6 @@ class Login(View):
             prev_url = request.GET['next']
             if prev_url not in self.__class__.referer:
                 self.__class__.referer = prev_url
-                self.__class__.referer = prev_url
         except KeyError:
             self.__class__.referer = 'accounts:home'
 
