@@ -18,7 +18,7 @@ class Profile(models.Model):
         'pm': 4
     }
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     plan = models.CharField(verbose_name='profile plan', max_length=7, choices=plan_options, default='fr')
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
