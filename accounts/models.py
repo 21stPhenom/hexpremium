@@ -29,18 +29,9 @@ class Profile(models.Model):
     class Meta:
         ordering = ['-date_created']
 
-    def is_free_user(self):
-        return self.plan == 'fr'
+    def is_plan(self, plan_name):
+     return self.plan == plan_name
 
-    def is_basic_user(self):
-        return self.plan == 'bc'
-    
-    def is_pro_user(self):
-        return self.plan == 'pr'
-
-    def is_premium_user(self):
-        return self.plan == 'pr'
-    
     def __gt__(self, other):
         assert isinstance(other, self.__class__), f'`other` must be an instance of {self.__class__}'
         return self.__plan_ranking[self.plan] > other.__plan_ranking[other.plan]
