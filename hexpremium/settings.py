@@ -29,6 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'hexpremium-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://hexpremium-production.up.railway.app']
 
 
 # Application definition
