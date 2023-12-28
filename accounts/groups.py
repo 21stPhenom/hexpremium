@@ -1,17 +1,34 @@
 from django.contrib.auth.models import Group
+from django.db.utils import OperationalError
 from accounts.models import Profile
 
-FREE_GROUP = Group.objects.get(name='Free Users')
-BASIC_GROUP = Group.objects.get(name='Basic Users')
-PRO_GROUP = Group.objects.get(name='Pro Users')
-PREMIUM_GROUP = Group.objects.get(name='Premium Users')
+try:
+    from accounts.permissions import FREE_PERMISSION, BASIC_PERMISSION, PRO_PERMISSION, PREMIUM_PERMISSION
+    FREE_GROUP, free_created = Group.objects.get_or_create(
+        name='Free Users',
+        permissions=[FREE_PERMISSION]
+    )
+    BASIC_GROUP, basic_created = Group.objects.get_or_create(
+        name='Basic Users',
+        permissions=[FREE_PERMISSION, BASIC_PERMISSION]
+    )
+    PRO_GROUP, pro_created = Group.objects.get_or_create(
+        name='Pro Users',
+        permissions=[FREE_PERMISSION, BASIC_PERMISSION, PRO_PERMISSION]
+    )
+    PREMIUM_GROUP, premium_created = Group.objects.get_or_create(
+        name='Premium Users',
+        permissions=[FREE_PERMISSION, BASIC_PERMISSION, PRO_PERMISSION, PREMIUM_PERMISSION]
+    )
 
-groups = {
-    'fr': FREE_GROUP,
-    'bc': BASIC_GROUP,
-    'pr': PRO_GROUP,
-    'pm': PREMIUM_GROUP
-}
+    groups = {
+        'fr': FREE_GROUP,
+        'bc': BASIC_GROUP,
+        'pr': PRO_GROUP,
+        'pm': PREMIUM_GROUP
+    }
+except Exception as e:
+    print(e)
 
 def migrate_user(user):
     current_plan = Profile.objects.get(user=user).plan
