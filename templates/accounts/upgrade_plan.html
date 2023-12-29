@@ -3,7 +3,7 @@
 {% block title %}Upgrade your plan | Hexpremium{% endblock title %}
 
 {% block body %}
-<h3>Current plan: {{ profile.plan }}</h3>
+<h3>Current plan: {{ profile.get_plan_display }}</h3>
 
 <h3>Upgrade to any of the following:</h3>
 <ul>
