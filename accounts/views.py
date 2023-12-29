@@ -52,7 +52,7 @@ class Register(View):
             profile = Profile.objects.get(user=new_user)
         except Profile.DoesNotExist:
             profile = Profile.objects.create(user=new_user)
-        new_user.groups.add(groups.FREE_GROUP) # automatically add all new users to the free group
+        new_user.groups.add(groups.get_groups()['fr']) # automatically add all new users to the free group
         
         return redirect('accounts:login')
 
@@ -128,10 +128,14 @@ class UpgradePlan(View):
 
         return redirect('accounts:upgrade_plan')
 
-
+class Error404(View):
+    def get(self, request, *args, **kwargs):
+        return render(self, 'accounts/error404.html')
+    
 home_view = Home.as_view()
 register_view = Register.as_view()
 login_view = Login.as_view()
 logout_view = Logout.as_view()
 login_only = LoginOnly.as_view()
 upgrade_plan = UpgradePlan.as_view()
+error404 = Error404.as_view()
