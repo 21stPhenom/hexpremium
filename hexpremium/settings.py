@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'blog.apps.BlogConfig',
     'hexapi.apps.HexapiConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
